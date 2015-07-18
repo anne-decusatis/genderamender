@@ -1,0 +1,3 @@
+[submodule "typeahead.js"]
+	path = typeahead.js
+	url = https://github.com/twitter/typeahead.js
