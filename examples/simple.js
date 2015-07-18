@@ -7,14 +7,17 @@ var gendermap = [
 "cis"
 ];
 
+
 $( document ).ready(function() {
+	var typer = $('.typeahead');
+
 	var genders = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		//prefetch: '../genders.json',
 		local: gendermap
 	});
-	$('#gender-input .typeahead').typeahead({
+	typer.typeahead({
 		hint: true,
 		highlight: true,
 		minLength: 1
@@ -24,7 +27,8 @@ $( document ).ready(function() {
 		source: genders
 	});
 	
-	$('.typeahead').bind('typeahead:open', function(ev, suggestion) {
-	  console.log('opened');
+	typer.bind('typeahead:select', function(ev, suggestion) {
+		var choices = $('#user-genders');
+		choices.html( choices.html() + "<li>" + suggestion + "</li>" ); //FIXME: i'm 100% certain there's a better way for this
 	});
 });
