@@ -14,8 +14,8 @@ $( document ).ready(function() {
 	var genders = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		//prefetch: '../genders.json',
-		local: gendermap
+		prefetch: '../genders.json'
+		//local: gendermap
 	});
 	typer.typeahead({
 		hint: true,
