@@ -1,13 +1,3 @@
-var gendermap = [
-"male",
-"female",
-"trans",
-"genderqueer",
-"agender",
-"cis"
-];
-
-
 $( document ).ready(function() {
 	var typer = $('.typeahead');
 
@@ -15,7 +5,6 @@ $( document ).ready(function() {
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		prefetch: '../genders.json'
-		//local: gendermap
 	});
 	typer.typeahead({
 		hint: true,
