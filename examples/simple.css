@@ -5,6 +5,12 @@ body {
     font-family: sans-serif;
 }
 
+input:focus {
+    outline: none;
+    border-color: #4400ee;
+    box-shadow: 0 0 2px #4400ee;
+}
+
 #user-stuff ul {
     padding: 0;
 }
