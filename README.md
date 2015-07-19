@@ -8,7 +8,7 @@ See here: https://help.github.com/articles/using-pull-requests/
 
 And submit here: https://github.com/anne-decusatis/genderamender/pulls
 
-Code of Conduct here: https://github.com/anne-decusatis/genderamender/code_of_conduct.md
+Code of Conduct here: https://github.com/anne-decusatis/genderamender/blob/master/code_of_conduct.md
 
 (You can also submit an issue here: https://github.com/anne-decusatis/genderamender/issues)
 
