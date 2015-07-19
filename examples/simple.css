@@ -1,0 +1,35 @@
+body {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+}
+
+#user-stuff ul {
+    padding: 0;
+}
+
+#user-stuff li {
+    display: inline;
+    margin: 0;
+}
+
+#gender-input {
+    width: 100%;
+    display: flex;
+}
+
+#gender-input input {
+    border-radius: 5px;
+    height: 30px;
+    width: 100% !important;
+    flex-grow: 1 !important;
+}
+
+.typeahead {
+    width: 960px;
+}
+
+.tt-hint, .tt-input, .tt-dropdown-menu, .twitter-typeahead {
+    width: 100%;
+}

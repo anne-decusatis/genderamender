@@ -18,6 +18,6 @@ $( document ).ready(function() {
 
 	typer.bind('typeahead:select', function(ev, suggestion) {
 		var choices = $('#user-genders');
-		choices.html( choices.html() + "<li>" + suggestion + "</li>" ); //FIXME: i'm 100% certain there's a better way for this
+	    choices.html( choices.html() + "<li>" + suggestion + "&nbsp; </li>" ); //FIXME: i'm 100% certain there's a better way for this
 	});
 });
