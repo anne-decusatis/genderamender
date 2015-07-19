@@ -7,17 +7,18 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="../typeahead.js/dist/typeahead.bundle.min.js"></script>
 		<script src="./simple.js"></script>
+                <link rel="stylesheet" type="text/css" href="./simple.css" />
 	</head>
 	<body>
 		<h1>Gender Dropdown Example</h1>
-		
+
 		<div id="user-stuff">
-			<p>Your gender identity is:</p>
-			<ul id="user-genders"/>
+			<p>Your current gender identit(y/ies) appear(s) to be:</p>
+			<ul id="user-genders"><li>&nbsp;</li></ul>
 		</div>
 
 		<div id="gender-input">
-			<input id="gender-text-input" class="typeahead" type="text" size="30" placeholder="What is your gender identity?">
+			<input id="gender-text-input" class="typeahead" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="what is a gender descriptor you identify with?">
 		</div>
 	</body>
 </html>
