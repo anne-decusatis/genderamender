@@ -1,14 +1,14 @@
 [
-    "woman",
-    "man",
-    "female",
-    "male",
-    "trans",
-    "genderqueer",
-    "agender",
-    "cis",
-    "bigender",
-    "genderless",
-    "pangender",
-    "questioning"
+  "agender", 
+  "bigender", 
+  "cis", 
+  "female", 
+  "genderless", 
+  "genderqueer", 
+  "male", 
+  "man", 
+  "pangender", 
+  "questioning", 
+  "trans", 
+  "woman"
 ]
