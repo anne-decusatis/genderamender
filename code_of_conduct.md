@@ -1,2 +1,1 @@
-This project adheres to the Open Code of Conduct. By participating, you are expected to honor this code.
-<a href="http://todogroup.org/opencodeofconduct/#Gender Amender open source contributors/anne.decusatis+ga@gmail.com">Click here to read it.</a>
+We're working on finding a better Code of Conduct that is more protective of our contributors. Should be up tonight, Jul 23!
