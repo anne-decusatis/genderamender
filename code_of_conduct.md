@@ -1,1 +1,1 @@
-We're working on finding a better Code of Conduct that is more protective of our contributors. Should be up tonight, Jul 23!
+We're now using the Contributor Covenant as our code of conduct. Read it here: http://contributor-covenant.org/version/1/2/0/code_of_conduct.txt
