@@ -4,7 +4,12 @@ $( document ).ready(function() {
 	var genders = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		prefetch: 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/genders.json'
+		prefetch: {
+			url: 'https://raw.githubusercontent.com/anne-decusatis/genderamender/buckets_for_genders/genders.json',
+			transform: function transform(response) {
+				return Object.keys(response);
+			}
+		}
 	});
 	typer.typeahead({
 		hint: true,
