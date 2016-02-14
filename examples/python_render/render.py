@@ -1,7 +1,7 @@
 import json
 import RenderGenders
 
-def render(chosen_options=[], filepath="./genders.json"):
+def render(chosen_options=[], filepath="../../genders/en-US.json"):
     renderer = RenderGenders.RenderGenders()
     all_gender_options = {}
     with open(filepath, "r") as f:
