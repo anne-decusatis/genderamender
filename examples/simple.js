@@ -4,7 +4,7 @@ $( document ).ready(function() {
 		datumTokenizer: Bloodhound.tokenizers.whitespace,
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		prefetch: {
-			url: 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/genders.json',
+			url: 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/genders/en-US.json',
 			transform: function transform(response) {
 				return Object.keys(response);
 			}
