@@ -20,6 +20,10 @@ input:focus {
     margin: 0;
 }
 
+#user-result {
+	font-weight: bold;
+}
+
 #gender-input {
     width: 99%;
     display: flex;
