@@ -68,12 +68,13 @@ function setUpBloodhoundSearch() {
 }
 
 function showDeterminedGender(keys, sourcefile) {
-	var result = "NONGENDERED";
+	var result = "UNSURE";
 	$.getJSON(sourcefile).done(function(object) {
 		var female = false;
 		var male = false;
 		var nonbinary = false;
 		var decline = false;
+		var nongendered = false;
 		
 		for(var i = 0; i < keys.length; i++) {
 			var key = keys[i];
@@ -90,6 +91,9 @@ function showDeterminedGender(keys, sourcefile) {
 			if(value == DECLINE) {
 				decline = true;
 			}
+			if(value == NONGENDERED) {
+				nongendered = true;
+			}
 		}
 	
 		if(decline) {
@@ -104,7 +108,7 @@ function showDeterminedGender(keys, sourcefile) {
 		if(nonbinary && !male && !female) {
 			result = "NONBINARY";
 		}
-		if(!nonbinary && !female && !male && !decline) {
+		if(!nonbinary && !female && !male && !decline && nongendered) {
 			result = "NONGENDERED";
 		}
 		
