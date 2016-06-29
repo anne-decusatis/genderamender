@@ -61,7 +61,7 @@ function setUpBloodhoundSearch() {
 	typer.bind('typeahead:select', function(ev, suggestion) {
 		choices.push(suggestion);
 		var choicesElement = $('#user-genders');
-		choicesElement.html( choicesElement.html() + "<li>" + suggestion + "&nbsp;</li>" ); //FIXME: i'm 100% certain there's a better way for this
+		choicesElement.append("<li>" + suggestion + " </li>");
 		showDeterminedGender(choices, genderDataLocation);
 	});
 
