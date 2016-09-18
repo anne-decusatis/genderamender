@@ -1,0 +1,8 @@
+{
+  "UNSURE": "we can't say what gender you are",
+  "DECLINE": "you don't want to tell us what gender you are",
+  "NONGENDERED": "you haven't chosen any gendered descriptors",
+  "FEMALE": "we think you've chosen female words",
+  "MALE": "we think you've chosen male words",
+  "NONBINARY": "we think you've chosen gendered words which aren't male or female"
+}
