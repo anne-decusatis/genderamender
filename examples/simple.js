@@ -1,6 +1,6 @@
 var genderDataLocation = 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/genders/en-US.json';
-// vars for input #s
-var DECLINE = -1, NONGENDERED = 0, FEMALE = 1, MALE = 2, NONBINARY = 3;
+var genderInputSchemaLocation = 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/gender_input_schema.json';
+var genderInputSchema = {}; // populated in document.ready
 // additional vars needed for rendering
 var UNSURE = -2;
 
@@ -18,6 +18,11 @@ var renderStringsEnglish = {
 var choices = [];
 
 $( document ).ready(function() {
+	$.getJSON(genderInputSchemaLocation).done(function(object) {
+		genderInputSchema = object;
+	}).fail(function() {
+		alert("something went wrong getting gender info :(");
+	});
 	setUpBloodhoundSearch();
 });
 
@@ -50,7 +55,6 @@ function setUpBloodhoundSearch() {
 		hint: true,
 		highlight: true,
 		minLength: 1
-
 	},
 	{
 		name: 'genders',
@@ -79,19 +83,19 @@ function showDeterminedGender(keys, sourcefile) {
 		for(var i = 0; i < keys.length; i++) {
 			var key = keys[i];
 			var value = object[key];
-			if(value == FEMALE) {
+			if(value == genderInputSchema.FEMALE) {
 				female = true;
 			}
-			if(value == MALE) {
+			if(value == genderInputSchema.MALE) {
 				male = true;
 			}
-			if(value == NONBINARY) {
+			if(value == genderInputSchema.NONBINARY) {
 				nonbinary = true;
 			}
-			if(value == DECLINE) {
+			if(value == genderInputSchema.DECLINE) {
 				decline = true;
 			}
-			if(value == NONGENDERED) {
+			if(value == genderInputSchema.NONGENDERED) {
 				nongendered = true;
 			}
 		}
