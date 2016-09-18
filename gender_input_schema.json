@@ -1,0 +1,7 @@
+{
+  "DECLINE": -1, 
+  "NONGENDERED": 0, 
+  "FEMALE": 1, 
+  "MALE": 2, 
+  "NONBINARY": 3
+}
