@@ -1,18 +1,13 @@
 var genderDataLocation = 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/genders/en-US.json';
+var genderData = {}; // populated in document.ready
 var genderInputSchemaLocation = 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/gender_input_schema.json';
 var genderInputSchema = {}; // populated in document.ready
-// additional vars needed for rendering
-var UNSURE = -2;
+var genderOutputSchemaLocation = 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/gender_output_schema.json';
+var genderOutputSchema = {}; // populated in document.ready
 
-// for display of rendered info TODO break out into separate file
-var renderStringsEnglish = {
-	UNSURE: "we can't say what gender you are",
-	DECLINE: "you don't want to tell us what gender you are",
-	NONGENDERED: "you haven't chosen any gendered descriptors",
-	FEMALE: "we think you've chosen female words",
-	MALE: "we think you've chosen male words",
-	NONBINARY: "we think you've chosen gendered words which aren't male or female"
-}
+// for display of rendered info 
+var renderStringsEnglishLocation = 'https://raw.githubusercontent.com/anne-decusatis/genderamender/master/examples/strings/en-US.json'
+var renderStringsEnglish = {} // populated in document.ready
 
 // the things you've selected
 var choices = [];
@@ -21,8 +16,27 @@ $( document ).ready(function() {
 	$.getJSON(genderInputSchemaLocation).done(function(object) {
 		genderInputSchema = object;
 	}).fail(function() {
-		alert("something went wrong getting gender info :(");
+		alert("something went wrong getting gender input info :(");
 	});
+	
+	$.getJSON(genderOutputSchemaLocation).done(function(object) {
+		genderOutputSchema = object;
+	}).fail(function() {
+		alert("something went wrong getting gender output info :(");
+	});
+	
+	$.getJSON(genderDataLocation).done(function(object) {
+		genderData = object;
+	}).fail(function() {
+		alert("something went wrong getting internal gender info :(");
+	});
+	
+	$.getJSON(renderStringsEnglishLocation).done(function(object) {
+		renderStringsEnglish = object;
+	}).fail(function() {
+		alert("something went wrong getting English string output info :(");
+	});
+	
 	setUpBloodhoundSearch();
 });
 
@@ -66,58 +80,57 @@ function setUpBloodhoundSearch() {
 		choices.push(suggestion);
 		var choicesElement = $('#user-genders');
 		choicesElement.append("<li>" + suggestion + " </li>");
-		showDeterminedGender(choices, genderDataLocation);
+		showDeterminedGender(choices, genderData, genderInputSchema, genderOutputSchema);
 	});
 
 }
 
-function showDeterminedGender(keys, sourcefile) {
+function getIsInKeys(keys, mappingKeysToGenderInts, genderIntToCheck) {	
+	for(var i = 0; i < keys.length; i++) {
+		var key = keys[i];
+		var value = mappingKeysToGenderInts[key];
+		if(value == genderIntToCheck) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function showDeterminedGender(keys, source, inputSchema, outputSchema) {
 	var result = "UNSURE";
-	$.getJSON(sourcefile).done(function(object) {
-		var female = false;
-		var male = false;
-		var nonbinary = false;
-		var decline = false;
-		var nongendered = false;
-		
-		for(var i = 0; i < keys.length; i++) {
-			var key = keys[i];
-			var value = object[key];
-			if(value == genderInputSchema.FEMALE) {
-				female = true;
-			}
-			if(value == genderInputSchema.MALE) {
-				male = true;
-			}
-			if(value == genderInputSchema.NONBINARY) {
-				nonbinary = true;
-			}
-			if(value == genderInputSchema.DECLINE) {
-				decline = true;
-			}
-			if(value == genderInputSchema.NONGENDERED) {
-				nongendered = true;
-			}
-		}
 	
-		if(decline) {
-			result = "DECLINE";
-		}
-		if(female && !male && !nonbinary) {
-			result = "FEMALE";
-		}
-		if(male && !female && !nonbinary) {
-			result = "MALE";
-		}
-		if(nonbinary && !male && !female) {
-			result = "NONBINARY";
-		}
-		if(!nonbinary && !female && !male && !decline && nongendered) {
-			result = "NONGENDERED";
-		}
-		
+	// determine what's in user choices
+	var female = getIsInKeys(keys, source, inputSchema.FEMALE);
+	var male = getIsInKeys(keys, source, inputSchema.MALE);
+	var nonbinary = getIsInKeys(keys, source, inputSchema.NONBINARY);
+	var decline = getIsInKeys(keys, source, inputSchema.DECLINE);
+	var nongendered = getIsInKeys(keys, source, inputSchema.NONGENDERED);
+	
+	// then determine result based on user choices
+	if(decline) {
+		result = "DECLINE";
 		$('#user-result').html(renderStringsEnglish[result]);
-	}).fail(function() {
-		$('#user-result').html(renderStringsEnglish["UNSURE"]); // this shouldn't happen
-	});
+		return;
+	}
+	if(female && !male && !nonbinary) {
+		result = "FEMALE";
+		$('#user-result').html(renderStringsEnglish[result]);
+		return;
+	}
+	if(male && !female && !nonbinary) {
+		result = "MALE";
+		$('#user-result').html(renderStringsEnglish[result]);
+		return;
+	}
+	if(nonbinary && !male && !female) {
+		result = "NONBINARY";
+		$('#user-result').html(renderStringsEnglish[result]);
+		return;
+	}
+	if(!nonbinary && !female && !male && !decline && nongendered) {
+		result = "NONGENDERED";
+		$('#user-result').html(renderStringsEnglish[result]);
+		return;
+	}
+	$('#user-result').html(renderStringsEnglish[result]);
 }
